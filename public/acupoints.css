@@ -1,0 +1,28 @@
+body {
+    background-image: url('img/background.png'); /* 替换 'path/to/your/background.png' 为图片的实际路径 */
+    background-size: cover; /* 背景图片覆盖整个可视区域 */
+    background-position: center; /* 背景图片居中显示 */
+    background-repeat: no-repeat; /* 背景图片不重复 */
+}
+
+/* 您可以添加更多针对 acupoints.html 页面的样式定义 */
+body {
+    display: flex;
+    flex-direction: column;
+    font-family: 'Roboto', sans-serif;
+    background-color:transparent;
+    color: #333;
+    line-height: 1.6;
+    height: 100vh; /* Full viewport height */
+    padding: 0; /* Adjusted padding */
+    position: relative;
+  }
+  
+  h1 {
+    color: #007bff;
+    padding: 20px; /* Adding padding back to h1 specifically */
+    margin-bottom: 0; /* Adjusting margin for h1 */
+    z-index: 999;
+  }
+
+  

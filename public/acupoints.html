@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Acupoint Explorer</title>
+    <link rel="stylesheet" href="acupoints.css">
+</head>
+<body>
+    <h1>Explore Acupoints</h1>
+    <canvas id="acupointCanvas" width="1920" height="1080" style="border:0px solid black;"></canvas>
+    <div id="acupointRecommendations"></div>
+    <script type="module">
+        import { drawPoints } from './acupoints.js';
+
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('Page loaded, drawing points...');
+            drawPoints();  // 直接调用，无需检查 'draw' 参数
+        });
+    </script>
+</body>
+</html>
