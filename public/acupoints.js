@@ -50,8 +50,8 @@ export const acupoints = [
       "stress headache",
       "eye strain",
     ],
-    "x": 695,
-    "y": 819,
+    "x": 706,
+    "y": 303,
   },
   {
     "name": "阳溪（LI5）",
@@ -159,8 +159,9 @@ export function findAcupointsBySymptom(symptom) {
 
 // 修改后的 drawPoints 函数，支持从 URL 中获取穴位名
 function drawPoints() {
-  console.log("URL Parameters:", params.toString()); // 打印出所有 URL 参数
   const params = new URLSearchParams(window.location.search);
+  console.log("URL Parameters:", params.toString()); // 打印出所有 URL 参数
+  //const params = new URLSearchParams(window.location.search);
   console.log("URL Parameters:", params.toString()); // 输出所有参数查看
 
   const canvas = document.getElementById("acupointCanvas");

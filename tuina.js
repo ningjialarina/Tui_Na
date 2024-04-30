@@ -42,7 +42,8 @@ router.get("/api/gpt", async (ctx) => {
   // 添加当前提示到会话的输入历史中
   state.inputs.push(userPrompt);
   let prompt = "";
-  const relevantPointsArray = []; // 初始化为空数组
+  //const relevantPointsArray = []; // 初始化为空数组
+  let relevantPointsArray = [];
 
   console.log("Current session state before switch:", state.stage);
   switch (state.stage) {
@@ -89,7 +90,7 @@ router.get("/api/gpt", async (ctx) => {
       });
 
       // 转换 Set 为数组以方便进一步处理
-      const relevantPointsArray = Array.from(allRelevantPoints);
+      relevantPointsArray = Array.from(allRelevantPoints);
 
       console.log(
         "Relevant acupoints for case 6:",
