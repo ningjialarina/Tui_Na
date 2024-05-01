@@ -1,7 +1,7 @@
 body {
     background-image: url('img/background.png'); /* 替换 'path/to/your/background.png' 为图片的实际路径 */
     background-size: cover; /* 背景图片覆盖整个可视区域 */
-    background-position: center; /* 背景图片居中显示 */
+    background-position: calc(50% + 0px) calc(50% + 150px); /* 背景图片调整位置 */
     background-repeat: no-repeat; /* 背景图片不重复 */
 }
 
@@ -19,7 +19,7 @@ body {
   }
   
   h1 {
-    color: #007bff;
+    color: #F93921;
     padding: 20px; /* Adding padding back to h1 specifically */
     margin-bottom: 0; /* Adjusting margin for h1 */
     z-index: 999;

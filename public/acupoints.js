@@ -167,7 +167,7 @@ function drawPoints() {
   const canvas = document.getElementById("acupointCanvas");
   const ctx = canvas.getContext("2d");
   ctx.clearRect(0, 0, canvas.width, canvas.height);
-  ctx.fillStyle = "blue";
+  ctx.fillStyle = "#872E1C";
 
   if (params.has("name")) {
     const names = params.getAll("name");

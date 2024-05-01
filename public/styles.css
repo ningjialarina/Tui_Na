@@ -15,10 +15,14 @@ body {
   height: 100vh; /* Full viewport height */
   padding: 0; /* Adjusted padding */
   position: relative;
+  background-image: url('img/mainbackground.png'); /* 替换 'path/to/your/background.png' 为图片的实际路径 */
+  background-size: cover; /* 背景图片覆盖整个可视区域 */
+  background-position: calc(50% + 0px) calc(50% + 150px); /* 背景图片调整位置 */
+  background-repeat: no-repeat; /* 背景图片不重复 */
 }
 
 h1 {
-  color: #007bff;
+  color: #872E1C;
   padding: 20px; /* Adding padding back to h1 specifically */
   margin-bottom: 0; /* Adjusting margin for h1 */
   z-index: 999;
@@ -41,7 +45,7 @@ h1 {
 
 input[type="text"] {
   flex-grow: 1; /* Allow input to fill space */
-  border: 1px solid #ccc;
+  border: 1px solid #F93921;
   border-radius: 5px;
   padding: 10px;
   margin-right: 10px; /* Space between input and button */
@@ -49,7 +53,7 @@ input[type="text"] {
 }
 
 button {
-  background-color: #007bff;
+  background-color: #F93921;
   color: white;
   padding: 10px 15px;
   border: none;
@@ -60,15 +64,15 @@ button {
 }
 
 button:hover {
-  background-color: #0056b3;
+  background-color: #872E1C;
 }
 
 .user {
   background-color: white;
-  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+  box-shadow: 0 4px 6px rgba(255, 255, 255, 0.1);
   border-radius: 5px;
   align-self: flex-end; /* Align user messages to the right */
-  background-color: #dcf8c6; /* Light green background for user messages */
+  background-color: #F93921; /* Light green background for user messages */
 }
 
 p {
@@ -113,6 +117,42 @@ canvas {
   left: 0;
   z-index: -1;
 }
+
+
+
+
+/* 走马灯 */
+/* 设置外层容器样式 */
+.marquee {
+  position: relative;
+  overflow: hidden; /* 隐藏超出部分 */
+  width: 100%; /* 容器宽度填满屏幕 */
+  height: 50px; /* 容器高度，根据需要调整 */
+  background-color: #f0f0f0; /* 背景颜色，根据需要调整 */
+  display: flex;
+  align-items: center; /* 垂直居中文字 */
+}
+
+/* 设置内部文字样式和动画 */
+.marquee p {
+  position: absolute;
+  width: auto; /* 宽度根据内容自动调整 */
+  white-space: nowrap; /* 不换行 */
+  margin: 0; /* 去除默认的外边距 */
+  animation: marquee 10s linear infinite; /* 应用动画 */
+}
+
+/* 定义关键帧动画 */
+@keyframes marquee {
+  from {
+    left: 100%; /* 开始位置，从容器右侧外开始 */
+  }
+  to {
+    left: -100%; /* 结束位置，到容器左侧外结束 */
+  }
+}
+
+
 
 
 

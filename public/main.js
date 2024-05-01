@@ -35,6 +35,7 @@ sendElement.addEventListener("click", () => {
 
 // Function to display messages in the chat container
 function displayMessage(text, sender) {
+  console.log("Displaying message:", text);
   const messageElement = document.createElement("p");
   messageElement.innerText = text;
   messageElement.className = sender; // Assign class for styling based on sender
@@ -69,3 +70,10 @@ function createRedirectButton(acupoints) {
     }
   });
 }
+
+document.getElementById("prompt").addEventListener("keydown", function (event) {
+  if (event.keyCode === 13) {
+    event.preventDefault(); // 防止默认表单提交
+    document.getElementById("send").click();
+  }
+});

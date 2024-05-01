@@ -49,31 +49,32 @@ router.get("/api/gpt", async (ctx) => {
   switch (state.stage) {
     case 1:
       prompt =
-        `Initial consultation: The person is working long hours at a computer and experiences discomfort. They say: '${userPrompt}'. Assumpt you are a professional doctor. You will ask a question to get more details based on '${userPrompt}'`;
+        `The person is working long hours at a computer and experiences discomfort. They say: ${userPrompt}. Ask a question directly to get more details based on '${userPrompt}'. Do not use asterisks and quotation mark. Do not highlight anything.`;
       state.stage = 2;
       break;
     case 2:
       prompt =
-        `Detailed Inquiry: You mentioned '${userPrompt}'. Base on '${userPrompt}', Ask 2 or 3 questions like:Could you please describe the nature 
+        `Detailed Inquiry: You mentioned '${userPrompt}'. Based on '${userPrompt}', Ask 2 questions like:Could you please describe the nature 
                 of this pain more precisely? Is it constant or intermittent? Does it worsen during work hours? in order 
-                to get more details about thier daily status and thier workspace.`;
+                to get more details about thier daily status and thier workspace.Do not use asterisks and quotation mark.Do not highlight anything.`;
       state.stage = 3;
       break;
     case 3:
-      prompt = `Education and Advice:Provide basic advice for '${userPrompt}'.
-                Then, ask questions that using subject of you. Questions can be how do you typically handle any discomfort during 
-                you daily routine or do you engage in any particular activities or take breaks to alleviate it. `;
+      prompt =
+        `Education and Advice:Provide basic advice for '${userPrompt} in 20 words.'.
+                Then, ask 1 question that using subject of you. Questions can be how do you typically handle any discomfort during 
+                you daily routine or do you engage in any particular activities or take breaks to alleviate it. Do not use asterisks and quotation mark.`;
       state.stage = 4;
       break;
     case 4:
       prompt =
-        `Based on the patient's situation '${userPrompt}',give breif advice of doing '${userPrompt}'.Then, also recommend 
-                TCM Tuina and give a brief introduction of Traditional Chinese Medicine Massage in one sentence. Give instruction of this web page is a Tuina health assistant in one sentence. Ask me would you instested more advices about Tuina in one senrtence.`;
+        `Based on the patient's situation '${userPrompt}',give breif advice of doing '${userPrompt}'.Then, recommend 
+                TCM Tuina and give a brief introduction of Traditional Chinese Medicine Massage in one sentence. Give instruction of this web page is a Tuina health assistant in one sentence. Ask me would you instested more advices about Tuina in one senrtence. Every steps start with a bullet points. Do not use asterisks and quotation mark.`;
       state.stage = 5; // Reset or further manage follow-up
       break;
     case 5:
       prompt =
-        "Tell me that you will show me some visually explore specific techniques only in one short sentence.";
+        "Tell me that you will show me some visually explore specific techniques only in one short sentence. Do not use asterisks and quotation mark.";
       state.stage = 6; // Reset to the beginning for a new session
       break;
     case 6: {
@@ -98,12 +99,12 @@ router.get("/api/gpt", async (ctx) => {
       );
 
       if (relevantPointsArray.length > 0) {
-        prompt =
+        response =
           `Based on your symptoms, we recommend focusing on the following acupoints: ${
             relevantPointsArray.map((p) => p.name).join(", ")
           }. Each of these points can help alleviate your symptoms.`;
       } else {
-        prompt =
+        response =
           "Sorry, no acupoints were found that match your symptoms. Please try describing your symptoms differently or consult a healthcare professional.";
       }
 
