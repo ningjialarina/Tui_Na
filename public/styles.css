@@ -10,28 +10,46 @@ body {
   flex-direction: column;
   font-family: 'Roboto', sans-serif;
   background-color:transparent;
-  color: #333;
+  color: #414141;
   line-height: 1.6;
   height: 100vh; /* Full viewport height */
   padding: 0; /* Adjusted padding */
   position: relative;
   background-image: url('img/mainbackground.png'); /* 替换 'path/to/your/background.png' 为图片的实际路径 */
   background-size: cover; /* 背景图片覆盖整个可视区域 */
-  background-position: calc(50% + 0px) calc(50% + 150px); /* 背景图片调整位置 */
+  background-position: center; /* 背景图片调整位置 */
   background-repeat: no-repeat; /* 背景图片不重复 */
 }
 
 h1 {
-  color: #872E1C;
-  padding: 20px; /* Adding padding back to h1 specifically */
+  background-color: transparent;
+  color: #F93921;
+  padding: 10px; /* Adding padding back to h1 specifically */
   margin-bottom: 0; /* Adjusting margin for h1 */
   z-index: 999;
+  margin-left:20px;
+  font-size: 42px;
 }
+
+h2 {
+  background-color: transparent;
+  position: fixed;      /* 固定位置，无论滚动条如何移动 */
+  bottom: 0;            /* 设置距离页面底部的距离为 0 */
+  left: 0;              /* 设置距离页面左边的距离为 0 */
+  width: 100%;          /* 宽度设置为 100%，覆盖整个页面宽度 */
+  color: #c9c9c9;
+  padding: 10px;
+  margin-bottom: 0;     /* 底部边距为 0 */
+  z-index: 999;         /* 高层级以确保在最上面显示 */
+  font-size: 11px;
+}
+
+
 
 #chat-container {
   flex-grow: 1;
   overflow-y: auto;
-  padding: 20px; /* Padding for chat container */
+  padding: 60px; /* Padding for chat container */
   display: flex;
   flex-direction: column;
 }
@@ -40,17 +58,35 @@ h1 {
   display: flex;
   background: #fff;
   padding: 10px 20px; /* Padding around input and button */
-  box-shadow: 0 -2px 4px rgba(0,0,0,0.1); /* Shadow to lift input area visually */
+  box-shadow: 0 -2px 4px rgba(255, 255, 255, 0.1); /* Shadow to lift input area visually */
 }
 
+
+input[type="text"]::placeholder {
+  color: #909090; /* 你想要的颜色，这里是灰色示例 */
+  opacity: 1; /* 有时需要设置透明度为1来确保颜色正确显示 */
+}
+
+
 input[type="text"] {
+  max-width: 60%;
   flex-grow: 1; /* Allow input to fill space */
   border: 1px solid #F93921;
   border-radius: 5px;
   padding: 10px;
   margin-right: 10px; /* Space between input and button */
+  margin-left: 320px;
   font-size: 16px;
+  /* margin: 0 auto; */
+  margin-right: 4px; 
 }
+
+
+input[type="text"]:focus {
+  outline: none; /* 移除默认轮廓 */
+  border-color: #872E1C; /* 设置新的边框颜色 */
+}
+
 
 button {
   background-color: #F93921;
@@ -68,7 +104,7 @@ button:hover {
 }
 
 .user {
-  background-color: white;
+  color: white;
   box-shadow: 0 4px 6px rgba(255, 255, 255, 0.1);
   border-radius: 5px;
   align-self: flex-end; /* Align user messages to the right */
@@ -76,27 +112,29 @@ button:hover {
 }
 
 p {
-  background-color: #f7f7f7; /* 浅灰色背景 */
+  background-color: #ffffff; /* 浅灰色背景 */
   padding: 10px; /* 文字周围的间距 */
   margin: 5px 0; /* 消息之间的间距 */
   border-radius: 5px;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2); /* 阴影效果 */
+  border-color: #F93921;
+  box-shadow: 0 1px 3px #F93921; /* 阴影效果 */
   align-self: flex-start; /* Align GPT responses to the left */
-  background-color: #f0f0f0; /* Light grey background for responses */
+  max-width: 60%; /* 最大宽度为容器的80% */
 }
 
-#statusIndicator {
+
+/*#statusIndicator {
   color: #2c3e50;
   font-size: 1.2em;
   padding: 10px 20px; /* Padding added */
-}
+/*}*/
 
 #currentStage {
   font-weight: bold;
   color: #e74c3c;
 }
 
-#color-button {
+/* #color-button {
   position: fixed;
   top: 10px;
   right: 10px;
@@ -106,7 +144,7 @@ p {
   border: none;
   border-radius: 5px;
   cursor: grab; /* 手形光标表示可以拖拽 */
-}
+/* } */
 
 
 
@@ -122,36 +160,47 @@ canvas {
 
 
 /* 走马灯 */
-/* 设置外层容器样式 */
 .marquee {
   position: relative;
   overflow: hidden; /* 隐藏超出部分 */
-  width: 100%; /* 容器宽度填满屏幕 */
-  height: 50px; /* 容器高度，根据需要调整 */
-  background-color: #f0f0f0; /* 背景颜色，根据需要调整 */
+  width: 100%;
+  height: 30px; /* 根据内容调整高度 */
   display: flex;
-  align-items: center; /* 垂直居中文字 */
+  align-items: center;
+  background-color: #ffffff; /* 背景颜色，根据需要调整 */
 }
 
-/* 设置内部文字样式和动画 */
-.marquee p {
+.marquee-content {
   position: absolute;
-  width: auto; /* 宽度根据内容自动调整 */
-  white-space: nowrap; /* 不换行 */
-  margin: 0; /* 去除默认的外边距 */
-  animation: marquee 10s linear infinite; /* 应用动画 */
+  display: flex; /* 设置为flex布局让短语排列在一行 */
+  animation: marquee 30s linear infinite; /* 动画时间根据总文案长度调整 */
 }
 
-/* 定义关键帧动画 */
+.marquee-content p {
+  font-family: 'Roboto', sans-serif; 
+  color: #F93921;
+  border-inline-start-style: 10px;
+  white-space: nowrap; /* 不换行 */
+  margin-right: 150px; /* 设置短语之间的间隔 */
+  background-color: transparent; /* 文本背景透明 */
+  padding: 0; /* 移除填充 */
+  box-shadow: none; /* 移除阴影 */
+  
+}
+
+
+
+
+
+
 @keyframes marquee {
   from {
-    left: 100%; /* 开始位置，从容器右侧外开始 */
+    left: 100%; /* 从右侧开始 */
   }
   to {
-    left: -100%; /* 结束位置，到容器左侧外结束 */
+    left: -100%; /* 完全从左侧离开视图 */
   }
 }
-
 
 
 

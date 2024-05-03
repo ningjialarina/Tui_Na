@@ -4,6 +4,7 @@ import { createExitSignal, staticServer } from "../shared/server.ts";
 import { acupoints } from "./public/acupoints.js";
 console.log("Acupoints loaded:", acupoints.length);
 import { Chalk } from "npm:chalk@5";
+import { say } from "../shared/cli.ts";
 console.log("Testing console output");
 const chalk = new Chalk({ level: 1 });
 
@@ -99,13 +100,14 @@ router.get("/api/gpt", async (ctx) => {
       );
 
       if (relevantPointsArray.length > 0) {
-        response =
-          `Based on your symptoms, we recommend focusing on the following acupoints: ${
+        prompt =
+          `Based on ${state.input}, give recommendations that focusing on the following acupoints: ${
             relevantPointsArray.map((p) => p.name).join(", ")
-          }. Each of these points can help alleviate your symptoms.`;
+          }. Say each of these points can help alleviate your symptoms. Do not use asterisks and quotation mark. Do not highlight text.`;
       } else {
-        response =
-          "Sorry, no acupoints were found that match your symptoms. Please try describing your symptoms differently or consult a healthcare professional.";
+        say(
+          "Sorry, no acupoints were found that match your symptoms. Please try describing your symptoms differently or consult a healthcare professional.",
+        );
       }
 
       console.log("Generated prompt for GPT:", prompt);

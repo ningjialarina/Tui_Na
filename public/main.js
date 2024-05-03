@@ -51,8 +51,8 @@ function createRedirectButton(acupoints) {
   button.style.top = "50%";
   button.style.left = "50%";
   button.style.transform = "translate(-50%, -50%)";
-  button.style.padding = "10px 20px";
-  button.style.fontSize = "1rem";
+  button.style.padding = "20px 40px";
+  button.style.fontSize = "2rem";
   button.id = "redirectButton";
   document.body.appendChild(button); // Append button to the body
   console.log("Button added to DOM and event listener set.");

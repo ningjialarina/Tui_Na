@@ -37,8 +37,8 @@ document.addEventListener("DOMContentLoaded", function () {
     // 显示圆环的方法
     display() {
       const alpha = (this.size - 5) / 295; // 计算透明度
-      const blue = (this.size - 5) / 295 * 155 + 100;
-      ctx.fillStyle = `rgba(0, 0, ${blue}, ${alpha})`;
+      //const blue = (this.size - 5) / 295 * 155 + 100;
+      ctx.fillStyle = `rgba(135, 46, 28, ${alpha})`;
       ctx.beginPath();
       ctx.ellipse(this.x, this.y, this.size, this.size, 0, 0, 2 * Math.PI);
       ctx.fill();

@@ -2,7 +2,8 @@ console.log("acupoints.js loading...");
 
 export const acupoints = [
   {
-    "name": "商阳（LI1）",
+    "name": "商阳",
+    "pinyin": "Shāngyáng (LI1)",
     "symptoms": [
       "headache",
       "migraine",
@@ -11,11 +12,12 @@ export const acupoints = [
       "forehead pain",
       "sinus pain",
     ],
-    "x": 725,
-    "y": 77,
+    "x": 762,
+    "y": 50,
   },
   {
-    "name": "二间（LI2）",
+    "name": "二间",
+    "pinyin": "Èrjiān (LI2)",
     "symptoms": [
       "toothache",
       "jaw pain",
@@ -24,11 +26,12 @@ export const acupoints = [
       "wisdom tooth pain",
       "molar pain",
     ],
-    "x": 688,
-    "y": 210,
+    "x": 680,
+    "y": 160,
   },
   {
-    "name": "三间（LI3）",
+    "name": "三间",
+    "pinyin": "Sānjiān (LI3)",
     "symptoms": [
       "lower back pain",
       "lumbar pain",
@@ -37,11 +40,12 @@ export const acupoints = [
       "back stiffness",
       "kidney pain",
     ],
-    "x": 683,
-    "y": 262,
+    "x": 675,
+    "y": 226,
   },
   {
-    "name": "合谷（LI4）",
+    "name": "合谷",
+    "pinyin": "Hégǔ (LI4)",
     "symptoms": [
       "headache",
       "toothache",
@@ -50,11 +54,12 @@ export const acupoints = [
       "stress headache",
       "eye strain",
     ],
-    "x": 706,
-    "y": 303,
+    "x": 698,
+    "y": 275,
   },
   {
-    "name": "阳溪（LI5）",
+    "name": "阳溪",
+    "pinyin": "Yángxī (LI5)",
     "symptoms": [
       "wrist pain",
       "carpal tunnel syndrome",
@@ -63,11 +68,12 @@ export const acupoints = [
       "hand arthritis",
       "sprained wrist",
     ],
-    "x": 684,
-    "y": 399,
+    "x": 654,
+    "y": 349,
   },
   {
-    "name": "偏历（LI6）",
+    "name": "偏历",
+    "pinyin": "Piānlì (LI6)",
     "symptoms": [
       "wrist sprain",
       "arm pain",
@@ -76,11 +82,12 @@ export const acupoints = [
       "arm fatigue",
       "numbness in arm",
     ],
-    "x": 639,
-    "y": 473,
+    "x": 609,
+    "y": 453,
   },
   {
-    "name": "温溜（LI7）",
+    "name": "温溜",
+    "pinyin": "Wēnliū (LI7)",
     "symptoms": [
       "elbow pain",
       "tendonitis",
@@ -89,11 +96,12 @@ export const acupoints = [
       "tennis elbow",
       "arm cramps",
     ],
-    "x": 600,
-    "y": 535,
+    "x": 560,
+    "y": 555,
   },
   {
-    "name": "下廉（LI8）",
+    "name": "下廉",
+    "pinyin": "Xiàlián (LI8)",
     "symptoms": [
       "forearm pain",
       "muscle strain",
@@ -102,11 +110,12 @@ export const acupoints = [
       "shooting pain in arm",
       "repetitive strain injury",
     ],
-    "x": 522,
-    "y": 647,
+    "x": 502,
+    "y": 657,
   },
   {
-    "name": "上廉（LI9）",
+    "name": "上廉",
+    "pinyin": "Shànglián (LI9)",
     "symptoms": [
       "upper arm pain",
       "shoulder pain",
@@ -115,11 +124,12 @@ export const acupoints = [
       "bicep strain",
       "shoulder stiffness",
     ],
-    "x": 484,
+    "x": 474,
     "y": 712,
   },
   {
-    "name": "手三里（LI10）",
+    "name": "手三里",
+    "pinyin": "Shǒu Sān Lǐ (LI10)",
     "symptoms": [
       "shoulder pain",
       "arm tension",
@@ -128,11 +138,12 @@ export const acupoints = [
       "arm soreness",
       "shoulder tendinitis",
     ],
-    "x": 453,
-    "y": 757,
+    "x": 443,
+    "y": 787,
   },
   {
-    "name": "曲池（LI11）",
+    "name": "曲池",
+    "pinyin": "Qū Chí (LI11)",
     "symptoms": [
       "shoulder pain",
       "frozen shoulder",
@@ -161,16 +172,17 @@ export function findAcupointsBySymptom(symptom) {
 function drawPoints() {
   const params = new URLSearchParams(window.location.search);
   console.log("URL Parameters:", params.toString()); // 打印出所有 URL 参数
-  //const params = new URLSearchParams(window.location.search);
-  console.log("URL Parameters:", params.toString()); // 输出所有参数查看
 
   const canvas = document.getElementById("acupointCanvas");
   const ctx = canvas.getContext("2d");
   ctx.clearRect(0, 0, canvas.width, canvas.height);
-  ctx.fillStyle = "#872E1C";
+  ctx.fillStyle = "#F93921";
+  ctx.font = "32px Arial"; // 设置字体大小和类型
+  ctx.textAlign = "left"; // 设置文本对齐方式
+  ctx.textBaseline = "middle"; // 设置文本的基线
 
   if (params.has("name")) {
-    const names = params.getAll("name");
+    const names = params.getAll("name").map((name) => decodeURIComponent(name));
     console.log("Drawing specific points:", names.join(", ")); // 确认要绘制的穴位名称
     names.forEach((name) => {
       const point = acupoints.find((p) => p.name === name);
@@ -178,6 +190,7 @@ function drawPoints() {
         ctx.beginPath();
         ctx.arc(point.x, point.y, 5, 0, 2 * Math.PI);
         ctx.fill();
+        ctx.fillText(`${point.name} (${point.pinyin})`, point.x + 10, point.y); // 绘制穴位名称
         displayPointDetails(point);
       } else {
         console.log("No point matched the name provided."); // 如果没有找到对应穴位
@@ -189,6 +202,7 @@ function drawPoints() {
       ctx.beginPath();
       ctx.arc(point.x, point.y, 5, 0, 2 * Math.PI);
       ctx.fill();
+      ctx.fillText(`${point.name} (${point.pinyin})`, point.x + 10, point.y); // 绘制穴位名称
     });
   }
 }
