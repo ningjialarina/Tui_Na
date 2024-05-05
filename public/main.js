@@ -54,7 +54,7 @@ function removeLastSystemMessage() {
     chatContainer.removeChild(messages[messages.length - 1]);
   }
 }
-+// Function to create a button for exploring more about acupoints
+// Function to create a button for exploring more about acupoints
 function createRedirectButton(acupoints) {
   console.log("Redirecting with acupoints:", acupoints);
   const button = document.createElement("button");
@@ -81,7 +81,7 @@ function createRedirectButton(acupoints) {
       window.location.href = "acupoints.html?draw=true";
     }
   });
-};
+}
 
 document.getElementById("prompt").addEventListener("keydown", function (event) {
   if (event.keyCode === 13) {
