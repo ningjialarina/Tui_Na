@@ -9,7 +9,7 @@ console.log("Testing console output");
 const chalk = new Chalk({ level: 1 });
 
 // change working directory to the current file's directory
-//Deno.chdir(new URL(".", import.meta.url).pathname);
+Deno.chdir(new URL(".", import.meta.url).pathname);
 
 // log the current working directory with friendly message
 console.log(`Current working directory: ${Deno.cwd()}`);

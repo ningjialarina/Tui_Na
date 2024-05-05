@@ -13,12 +13,17 @@ sendElement.addEventListener("click", () => {
   displayMessage(userText, "user"); // Display user message
   promptElement.value = ""; // Clear the input field
 
+  // 显示“生成中”消息
+  displayMessage("Generating...", "system");
+
   // Fetch response from the GPT API with user input and session ID
   fetch(
     `/api/gpt?prompt=${encodeURIComponent(userText)}&sessionId=${sessionId}`,
   )
     .then((response) => response.json())
     .then((data) => {
+      // 调用函数移除“生成中”消息
+      removeLastSystemMessage();
       console.log("API response received with acupoints:", data.acupoints);
       displayMessage(data.response, "gpt"); // Display GPT's response
       relevantAcupoints = data.acupoints || []; // Store acupoints from the response
@@ -42,7 +47,14 @@ function displayMessage(text, sender) {
   chatContainer.appendChild(messageElement); // Append message to the container
 }
 
-// Function to create a button for exploring more about acupoints
+// 移除最后一个系统消息（用于清除“生成中”）
+function removeLastSystemMessage() {
+  const messages = chatContainer.getElementsByClassName("system");
+  if (messages.length > 0) {
+    chatContainer.removeChild(messages[messages.length - 1]);
+  }
+}
++// Function to create a button for exploring more about acupoints
 function createRedirectButton(acupoints) {
   console.log("Redirecting with acupoints:", acupoints);
   const button = document.createElement("button");
@@ -69,7 +81,7 @@ function createRedirectButton(acupoints) {
       window.location.href = "acupoints.html?draw=true";
     }
   });
-}
+};
 
 document.getElementById("prompt").addEventListener("keydown", function (event) {
   if (event.keyCode === 13) {
