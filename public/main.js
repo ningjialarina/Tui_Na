@@ -14,7 +14,7 @@ sendElement.addEventListener("click", () => {
   promptElement.value = ""; // Clear the input field
 
   // 显示“生成中”消息
-  displayMessage("Generating...", "system");
+  displayMessage("Loading...", "system");
 
   // Fetch response from the GPT API with user input and session ID
   fetch(
