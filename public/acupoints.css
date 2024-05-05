@@ -66,4 +66,33 @@ body {
 }
 
 
+/* 音频开关按钮样式 */
+.audio-toggle {
+    position: fixed;
+    bottom: 20px; /* 调整与页面底部的距离 */
+    right: 20px; /* 调整与页面右侧的距离 */
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background-color: #F93921; /* 使用较为醒目的颜色 */
+    color: #fff;
+    font-size: 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+    border: none;
+    outline: none;
+    transition: background-color 0.3s;
+    z-index: 1000; /* 确保音频按钮位于其他元素上方 */
+}
+
+/* 鼠标悬停和激活效果 */
+.audio-toggle:hover {
+    background-color: #872E1C;
+}
+.audio-toggle:active {
+    background-color: #ffffff;
+}
 

@@ -10,7 +10,8 @@
             <p> Explore ancient paths with Tui Na's digital journey. <p> 
             <p> Describe your body discomfort below in phrase. <p>
             <p> Which of your body feels painful? <p> 
-            <p> Need quick relief? Let's find the right acupoint. <p> 
+            <p> Need quick relief? Let's find the right acupoint. <p>
+            <p> Take your time. <p>  
         </div>
       </div>   
     <title>Tui Na🏮</title>
@@ -24,6 +25,12 @@
         <input id="prompt" type="text" placeholder="Describe your symptoms or concerns">
         <button id="send">Send</button>
     </div>
+    <audio id="background-audio" loop autoplay>
+        <source src="audio/bgm2.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+      </audio>
+      <!-- 音频控制按钮 -->
+      <button id="audio-toggle" class="audio-toggle">🔊</button>  
     <script src="background.js"></script>
     <script src="main.js" defer></script>
 </body>
