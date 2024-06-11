@@ -84,7 +84,7 @@ router.get("/api/gpt", async (ctx) => {
       // 假设 state.inputs 包含了会话中所有的用户输入
       const allRelevantPoints = new Set(); // 使用 Set 来避免重复的穴位
 
-      // 检查会话中的每个输入，找出匹配的穴位
+      // Find out the right acupoint
       console.log("All user inputs:", state.inputs);
       state.inputs.forEach((input) => {
         const relevantPoints = findAcupointsBySymptom(input);
